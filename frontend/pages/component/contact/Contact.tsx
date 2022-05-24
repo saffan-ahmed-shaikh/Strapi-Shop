@@ -171,7 +171,7 @@ export default function Contact() {
                                   )
                                 }
                               >
-                                {showPassword ? "show" : "hide"}
+                                {showPassword ? "hide" : "show"}
                               </Button>
                             </InputRightElement>
                           </InputGroup>
