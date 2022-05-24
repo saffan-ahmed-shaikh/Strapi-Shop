@@ -21,7 +21,7 @@ export default function Products(props: { products: { data: any[] } }) {
       <Box mt="25px" px="25px">
         <Grid templateColumns="repeat(4, 1fr)" gap={24}>
           {props.products.data.map((item) => (
-            <GridItem>
+            <GridItem key={item.id}>
               <Box
                 bg="#fff"
                 p="10px"
@@ -29,8 +29,13 @@ export default function Products(props: { products: { data: any[] } }) {
                 boxShadow="0px 0px 30px #4c4b4b85"
               >
                 <Box height="300px">
-                  {item.attributes.Image.data.map((img) => (
-                    <Image w="100%" h="100%" src={img.attributes.name} />
+                  {item.attributes.Image.data.map((img, i) => (
+                    <Image
+                      w="100%"
+                      h="100%"
+                      src={img.attributes.name}
+                      key={i}
+                    />
                   ))}
                 </Box>
                 <Box>
@@ -39,7 +44,7 @@ export default function Products(props: { products: { data: any[] } }) {
                       {item.attributes.Name}
                     </Heading>
                   </Box>
-                  <Text
+                  <Box
                     color="#000"
                     mt="10px"
                     mb="0px"
@@ -59,7 +64,7 @@ export default function Products(props: { products: { data: any[] } }) {
                       </svg>
                     </Text>
                     {item.attributes.Amount}
-                  </Text>
+                  </Box>
                   <Box height="110px" overflow="hidden">
                     <Text color="#000" m={0} p={0}>
                       {item.attributes.description}
