@@ -71,7 +71,7 @@ export default function Aboutuscontent() {
             <Box>
               <Center>
                 {" "}
-                <Link href="/component/People/Products">
+                <Link href="/component/Products/Products">
                   <Button
                     color="#fff"
                     mr="4"
@@ -131,7 +131,7 @@ export default function Aboutuscontent() {
             <Box w="100%">
               <Center>
                 {" "}
-                <Link href="/component/People/Products" w="100%">
+                <Link href="/component/Products/Products" w="100%">
                   <Button
                     color="#fff"
                     mr="4"
