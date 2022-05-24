@@ -21,7 +21,7 @@ export default function Products(props) {
       <Box mt="25px" px="25px">
         <Grid templateColumns="repeat(4, 1fr)" gap={24}>
           {props.products.data.map((item) => (
-            <GridItem key={item.id}>
+            <GridItem>
               <Box
                 bg="#fff"
                 p="10px"
@@ -29,19 +29,17 @@ export default function Products(props) {
                 boxShadow="0px 0px 30px #4c4b4b85"
               >
                 <Box height="300px">
-                  <Image
-                    w="100%"
-                    h="100%"
-                    src={item.attributes.image.data.attributes.name}
-                  />
+                  {item.attributes.Image.data.map((img) => (
+                    <Image w="100%" h="100%" src={img.attributes.name} />
+                  ))}
                 </Box>
                 <Box>
                   <Box h="60px" overflow="hidden" w="auto" mt="10px">
                     <Heading color="#000" m={0} p={0}>
-                      {item.attributes.title}
+                      {item.attributes.Name}
                     </Heading>
                   </Box>
-                  <Box
+                  <Text
                     color="#000"
                     mt="10px"
                     mb="0px"
@@ -60,8 +58,8 @@ export default function Products(props) {
                         <path d="M.0022 64C.0022 46.33 14.33 32 32 32H288C305.7 32 320 46.33 320 64C320 81.67 305.7 96 288 96H231.8C241.4 110.4 248.5 126.6 252.4 144H288C305.7 144 320 158.3 320 176C320 193.7 305.7 208 288 208H252.4C239.2 266.3 190.5 311.2 130.3 318.9L274.6 421.1C288.1 432.2 292.3 452.2 282 466.6C271.8 480.1 251.8 484.3 237.4 474L13.4 314C2.083 305.1-2.716 291.5 1.529 278.2C5.774 264.1 18.09 256 32 256H112C144.8 256 173 236.3 185.3 208H32C14.33 208 .0022 193.7 .0022 176C.0022 158.3 14.33 144 32 144H185.3C173 115.7 144.8 96 112 96H32C14.33 96 .0022 81.67 .0022 64V64z" />
                       </svg>
                     </Text>
-                    {item.attributes.price}
-                  </Box>
+                    {item.attributes.Amount}
+                  </Text>
                   <Box height="110px" overflow="hidden">
                     <Text color="#000" m={0} p={0}>
                       {item.attributes.description}
@@ -89,12 +87,15 @@ export default function Products(props) {
   );
 }
 export const getServerSideProps: GetServerSideProps = async () => {
-  let a = await fetch("http://localhost:1337/api/products?populate=*");
+  let a = await fetch(
+    "https://saffan-ahmed-shaikh.github.io/products-json/product.json"
+  );
   let products = await a.json();
   console.log(products);
   return {
     props: {
       products: products,
+      name: "azhar",
     },
   };
 };
