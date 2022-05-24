@@ -14,7 +14,7 @@ import Navbar from "../../Navbar";
 import { GetServerSideProps } from "next";
 import React from "react";
 
-export default function Products(props) {
+export default function Products(props: { products: { data: any[] } }) {
   return (
     <Box bg="#d3e9f9" p="10px" h="100%">
       <Navbar />
@@ -28,13 +28,11 @@ export default function Products(props) {
                 borderRadius="10px"
                 boxShadow="0px 0px 30px #4c4b4b85"
               >
-                <Box height="300px">
-                  <Image
-                    w="100%"
-                    h="100%"
-                    src={item.attributes.image.data.attributes.name}
-                  />
-                </Box>
+                {/* <Box height="300px">
+                  {item.attributes.Image.data.map((img) => (
+                    <Image w="100%" h="100%" src={img.attributes.name} />
+                  ))}
+                </Box> */}
                 <Box>
                   <Box h="60px" overflow="hidden" w="auto" mt="10px">
                     <Heading color="#000" m={0} p={0}>
@@ -89,7 +87,9 @@ export default function Products(props) {
   );
 }
 export const getServerSideProps: GetServerSideProps = async () => {
-  let a = await fetch("http://localhost:1337/api/products?populate=*");
+  let a = await fetch(
+    "https://saffan-ahmed-shaikh.github.io/products-json/deals.json"
+  );
   let products = await a.json();
   console.log(products);
   return {
